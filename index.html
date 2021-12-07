@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Train schedules</title>
+</head>
+<body>
+
+    <h1>Train schedules</h1>
+
+    <label for="station">Choose a station:</label>
+    <input type="text" id="station" name="station"><br><br>
+    <label for="date">Choose date:</label>
+    <input type="date" id="date" name="date" value='YYYY-MM-DD'><br><br>
+
+    <button id = "getData">Find schedules</button>
+
+    <table>
+
+      <span id = "tabledata"></span>
+        <tr>
+            <th>Helsinki departures</th>
+          </tr>
+          <tr>
+            <td>Train</td>
+            <td>Departure</td>
+            <td>Track</td>
+            <td>Destination</td>
+          </tr>
+          <tr>
+            <td>Z</td>
+            <td>12:19</td>
+            <td>3</td>
+            <td>Lahti</td>
+          </tr>
+    </table>
+
+
+
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
