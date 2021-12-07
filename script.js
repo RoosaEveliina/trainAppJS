@@ -2,16 +2,48 @@ const getButton = document.getElementById('getData');
 const dateInput = document.getElementById('date');
 const depStationInput = document.getElementById('departureStation');
 const arStationInput = document.getElementById('arrivalStation');
+const stationButton = document.getElementById('stationBtn')
+const stationInput = document.getElementById('findStation')
+
+const stationURL = 'https://rata.digitraffic.fi/api/v1/metadata/stations'
+var xhr = new XMLHttpRequest();
+
+stationButton.addEventListener('click', function(e) {
+    xhr.open("GET", stationURL, true);
+    xhr.send();
+
+    xhr.onload = () => {
+        stationsObj = JSON.parse(xhr.responseText);
+        var searchStation = stationInput.value;
+        var stationResult = '';
+
+
+        for (var i = 0; i < stationsObj.length; i++) {
+          if (searchStation + " asema" == stationsObj[i].stationName || searchStation == stationsObj[i].stationName) {
+            stationResult = stationsObj[i].stationShortCode
+            
+
+        }
+        document.getElementById('stationData').innerHTML = stationResult
+        }
+
+       
+    } 
+})
+
+
 
 const baseURL = 'https://rata.digitraffic.fi/api/v1/live-trains/station/'
 var xmlhttp = new XMLHttpRequest();
 
 
+
 getButton.addEventListener('click', function(e){
 
-    const date = (dateInput.value);
-    let departureStation = (depStationInput.value);
-    let arrivalStation = (arStationInput.value);
+    var date = dateInput.value;
+    var departureStation = depStationInput.value;
+    var arrivalStation = arStationInput.value;
+     
 
     const url = baseURL + departureStation + "/" + arrivalStation + "?departure_date=" + date + "&include_nonstopping=false"
 
@@ -22,17 +54,19 @@ getButton.addEventListener('click', function(e){
         jsonObj = JSON.parse(xmlhttp.responseText);
 
         var data = jsonObj;
+
+        var showDate = new Date(dateInput.value);
+        var printDay = showDate.getDate() + "." + (showDate.getMonth() + 1) + "." + showDate.getYear();
         
         var out = ` <table>
                     <tr>
-                    <th>${departureStation} - ${arrivalStation}</th>
+                    <th>${departureStation} - ${arrivalStation} &emsp; schedules for ${printDay} </th>
                     </tr>
                     <tr>
                     <td>Train</td>
                     <td>Departure</td>
                     <td>Track</td>
                     <td>Destination</td>
-                    <td>Arrival<td>
                     </tr>`
 
 
@@ -49,7 +83,13 @@ getButton.addEventListener('click', function(e){
              trainType = "Lähijuna " + data[i].commuterLineID   
            }
 
-           var track = '';
+           
+            
+            var departure = data[i].timeTableRows[0].scheduledTime
+            var date = new Date(departure);
+            var printTime = date.getHours() + ":" + (date.getMinutes());
+            
+            var track = '';
 
            if (data[i].timeTableRows[0].commercialTrack == "") {
                track = "information missing"
@@ -57,18 +97,7 @@ getButton.addEventListener('click', function(e){
               track = data[i].timeTableRows[0].commercialTrack
            }
             
-            var departure = data[i].timeTableRows[0].scheduledTime
-
-            var date = new Date(departure);
-
-
-            var printTime = date.getHours() + ":" + (date.getMinutes());
-
-
-            
             var destination = arrivalStation
-
-            
 
             out += `<tr>`;
 
@@ -87,3 +116,4 @@ getButton.addEventListener('click', function(e){
     }
    
 })
+
