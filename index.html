@@ -3,31 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300&family=Poppins:wght@200&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Train schedules</title>
 </head>
 <body>
 
-    <h1>Train schedules</h1>
+    <div class = "container">
+
+    <h1>Welcome!</h1>
+    <h3>Find departing trains for your journey</h3>
+
+    <div class = "stationInfo">
 
     <label for="findStation">Find station shortcode</label>
-    <input type="text" id="findStation" name="station"><br>
+    <input type="text" id="findStation" name="station" placeholder="e.g. Helsinki">
 
-    <button id = "stationBtn">Find station</button>
+    <button id = "stationBtn"  class="button"><i class="fa fa-search"></i></button>
 
     <span id = "stationData"></span>
+  </div>
 
-    <label for="departureStation">Choose departure station:</label>
-    <input type="text" id="departureStation" name="station"><br>
+    <div class = "inputFields">
 
-    <label for="arrivalStation">Choose arrival station:</label>
-    <input type="text" id="arrivalStation" name="station"><br>
+    
+    <div class = "input">
+    <label for="departureStation">Departure station shortcode:</label>
+    <input type="text" id="departureStation" name="station" placeholder="e.g. HKI">
+    </div>
 
+    <div class = "input">
+    <label for="arrivalStation">Destination station shortcode:</label>
+    <input type="text" id="arrivalStation" name="station" placeholder="e.g. LH">
+    </div>
+ 
     <label for="date">Choose date:</label>
-    <input type="date" id="date" name="date" value='YYYY-MM-DD'><br><br>
+    <input type="date" id="date" name="date" value='YYYY-MM-DD'>
 
-    <button id = "getData">Find Trains</button>
 
-    <table>
+    <button id = "getData" class = "button">FIND TRAINS</button> </div>
+
+    <span id = "errorMessage"></span></div>
+
+    <div class = "table">
+
 
       <span id = "tabledata"></span>
         <!--<tr>
@@ -48,6 +69,7 @@
             <td>13:39</td>
           </tr>
     </table>-->
+  </div>
 
 
 
