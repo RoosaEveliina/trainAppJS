@@ -80,8 +80,26 @@ tr:hover {
     transform: scale(1.08);
 }
 
-@media (max-width: 480px) {
-    body{
-        background-color: wheat;
+@media screen and (max-width: 900px) {
+    body {
+      background-image: url(img/train.jpg);
+      background-size: cover;
     }
-}
+
+    .input {
+        width: min-content;
+        margin: 1.5em;
+    }
+
+    th {
+        display: none;
+    }
+    .container {
+        border-radius: 10%;
+    }
+
+    .table {
+        margin-top: 1em;
+    }
+  
+  }
