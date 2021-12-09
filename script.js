@@ -43,7 +43,7 @@ stationButton.addEventListener('click', function (e) {
 
             if (searchStation + " asema" == stationsObj[i].stationName || searchStation == stationsObj[i].stationName) {
                 stationResult = stationsObj[i].stationShortCode;            
-            }    
+            }   
 
         } 
             //The result will be printed to the page
