@@ -1,4 +1,4 @@
-Trains schedule app with digitraffic API
+Trains schedule app with digitraffic API Roosa Turunen
 
 The user will input the information of the stations they want to travel between and the date they want to leave the departure station. They will receive information about the trains leaving the departure station that go the destination they have chosen. They will receive information about the train type and number, the time the train will leave and the track it will leave from. 
 
